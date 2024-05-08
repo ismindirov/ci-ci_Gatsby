@@ -1,6 +1,4 @@
 build website:
-  tags:
-    -ci
   script:
     - npm install
     - npm install -g gatsby-cli
