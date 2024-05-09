@@ -4,7 +4,7 @@ stages:
 
 build website:
   stage: build
-  image: node:lts
+  image: node
   script:
     - npm install
     - npm install -g gatsby-cli
@@ -17,13 +17,14 @@ test artifact:
   image: alpine
   stage: test
   script:
-    - grep -q  "Gatsby" ./public/index.html
+    - grep -q "Gatsby" ./public/index.html
 
 test website:
-  image: node 
+  image: node
   stage: test
   script:
     - npm install
     - npm install -g gatsby-cli
-    - gatsby serve
-    - curl "http://64.227.102.84:9000" | grep -q  "Gatsby"    
+    - gatsby serve &
+    - sleep 3
+    - curl "http://localhost:9000" | tac | tac | grep -q "Gatsby"
