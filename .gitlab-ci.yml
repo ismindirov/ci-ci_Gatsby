@@ -32,8 +32,9 @@ test website:
 
 
 deploy to surge:
+  stage: deploy
   script:
     - npm install --global surge
     - surge --project ./public --domain ismindirov.surge.sh
-    
+
 
