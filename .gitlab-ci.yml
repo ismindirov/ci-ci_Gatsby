@@ -4,6 +4,8 @@ stages:
   - build
   - test
   - deploy
+  - deployment tests
+
 
 build website:
   stage: build
@@ -36,5 +38,16 @@ deploy to surge:
   script:
     - npm install --global surge
     - surge --project ./public --domain ismindirov.surge.sh
+
+tests deploument:
+  image: alpine
+  stage: deployment tests
+  script:
+    - apk add openssh
+    - sleep 3
+    - apk add openssh openntp vim
+    - sleep 3
+    - curl "https://ismindirov.surge.sh/" | tac | tac | grep -q "Big-picture explanations of higher-level Gatsby concepts"
+
 
 
