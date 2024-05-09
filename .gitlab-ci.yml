@@ -43,11 +43,8 @@ tests deploument:
   image: alpine
   stage: deployment tests
   script:
-    - apk add openssh
-    - sleep 3
-    - apk add openssh openntp vim
-    - sleep 3
-    - curl "https://ismindirov.surge.sh/" | tac | tac | grep -q "Big-picture explanations of higher-level Gatsby concepts"
+    - apk add --no-cache curl
+    - curl -s  "https://ismindirov.surge.sh/" grep -q "Big-picture explanations of higher-level Gatsby concepts"
 
 
 
